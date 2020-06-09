@@ -3,11 +3,16 @@
 echo "Welcome to Snake Ladder game!!"
 position=0
 echo "STARTING WITH POSITION " $position
+
 next=0
 WINNING_POINT=100
+count=0
 
-while true
+while (( $next !=WINNING_POINT ))
 do
+
+((++count))
+	echo "Roll" $count
 	dice=$[(RANDOM%6) +1 ]
 	echo "Dice" $dice
 
@@ -42,12 +47,15 @@ do
 	if (( $next < 0 ))
 	then
 			next=$position
+	elif (( $next > $WINNING_POINT ))
+	then
+			next=$[(next-curr_position)]
 	fi
 
-	if (( $next == $WINNING_POINT ))
-	then
-			break;
-	fi
+	#if (( $next == $WINNING_POINT ))
+	#then
+	#		break;
+	#fi
 
 	echo "next position" $next
 	echo " "
